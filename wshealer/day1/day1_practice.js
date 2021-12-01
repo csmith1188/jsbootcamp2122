@@ -24,7 +24,7 @@ cart.push();
 
 //Condititonal statements will run the code in the curly braces
 //if the expression provided in paranthesis resolves as 'true'
-if (cart.wheels >= 4) {
+if (cart.wheels > 4) {
   console.log("you have to many wheels");
 } else if (cart.wheels == 4) {
   console.log("you have the correct number of wheels");
