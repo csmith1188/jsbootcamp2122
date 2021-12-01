@@ -35,6 +35,4 @@ if (cart.wheels > 4) {
 
 // Single Line Conditional
 if (cart.wheels) console.log("You have wheels");
-else (cart.wheels) console.log("You don't have wheels");
-
-//EOF
+else console.log("You don't have wheels");
