@@ -18,6 +18,7 @@ var character = {
   },
   inventory: [],
   abilities: [],
+  //This method searches for an item in the item list with this Name and aadds it to this characters inventory
   pickupItem: function(searchName) {
     for (var item of item_list) {
       if (item.name == searchName) {
@@ -32,8 +33,19 @@ var character = {
     defense: 999999999999,
     hp_current: 999999999999,
     hp_max: 999999999999
+  },
+  // This method searches for a given slot and overwrites it with an empty object
+  unequipItem: function(slot) {
+    for (var slotName in this.equipment) {
+      console.log(slotName);
+      if (slotName == slot) {
+        console.log("Found item slot. Removing");
+        this.equipment.slotName = {};
+      }
+    }
   }
 }
+
 
 var item_list = [{
     name: 'Divine Dagger',
@@ -55,6 +67,7 @@ var item_list = [{
 // Create a GET endpoint
 app.get('/', (req, res) => {
   character.pickupItem('Divine Dagger');
+  character.unequipItem('arm_p');
   res.send(`
     <h1>God's Judgement is among us</h1>
     <p>Name: ${character.name}</p>
