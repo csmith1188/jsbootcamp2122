@@ -6,7 +6,7 @@
   "hey" // String
 true //bool
 
-for
+
 // storing values into a variable (primitives)
 var hey = 20;
 console.log(hey)
