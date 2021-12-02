@@ -68,17 +68,6 @@ var item_list = [{
 app.get('/', (req, res) => {
   character.pickupItem('Divine Dagger');
   character.unequipItem('arm_p');
-  res.send(`
-    <h1>God's Judgement is among us</h1>
-    <p>Name: ${character.name}</p>
-    <p>Race: ${character.race}</p>
-    <p>Profession: ${character.profession}</p>
-    <p>Current Attack: ${character.stats.attack}</p>
-    <p>Current Defense: ${character.stats.defense}</p>
-    <p>Current HP: ${character.stats.hp_current}</p>
-    <p>Max HP: ${character.stats.hp_max}</p>
-    <p>Inventory: ${JSON.stringify(character.inventory)}</p>
-    `);
   //each of the characters stats
   // One per paragraph
 })
