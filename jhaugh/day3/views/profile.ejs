@@ -25,12 +25,16 @@
     statsHeader.innerHTML = 'Stats'
     let statsBox = document.createElement('div');
     statsBox.innerHTML = JSON.stringify(characterData.stats);
+    content.append(statsHeader)
+    content.append(statsBox)
 
     for (var slot of Object.keys(characterData.equipment) ) {
       let slotHeader = document.createElement('h3');
       slotHeader.innerHTML = slot;
       let slotBox = document.createElement('div');
       slotBox.innerHTML = JSON.stringify(characterData.equipment[slot]);
+      content.append(slotHeader)
+      content.append(slotBox)
     }
 
   }
