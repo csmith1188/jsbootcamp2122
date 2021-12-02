@@ -82,5 +82,5 @@ app.get('/', (req, res) => {
   //each of the characters stats
   // One per paragraph
 })
-// STart an http listen server
+// Start an http listen server
 app.listen(3000)
