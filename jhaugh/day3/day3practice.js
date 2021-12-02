@@ -4,6 +4,9 @@ const express = require('express');
 // Create an express application object
 const app = express()
 
+// View Engine
+app.set("view engine", "ejs");
+
 // Create one character object
 var character = {
   name: 'Chad',
@@ -68,6 +71,7 @@ var item_list = [{
 app.get('/', (req, res) => {
   character.pickupItem('Divine Dagger');
   character.unequipItem('arm_p');
+  res.render('profile', { sendData: character })
   //each of the characters stats
   // One per paragraph
 })
