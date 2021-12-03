@@ -3,6 +3,8 @@
   <head>
     <meta charset="utf-8">
     <title>Character Profile</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
   </head>
   <body>
     <h1>Hewwo UwU</h1>
@@ -15,6 +17,7 @@
     if (characterData) {
       var contentBox = document.getElementById('content')
       let profileBox = document.createElement('div')
+      profileBox.id = 'profileBox'
       contentBox.append(profileBox)
       let nameHeader = document.createElement('h2')
       nameHeader.innerText = characterData.name
@@ -41,7 +44,7 @@
   <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
   <script>
   $( function() {
-    $( "#accordion" ).accordion({
+    $( "#profileBox" ).accordion({
       collapsible: true
     });
   } );

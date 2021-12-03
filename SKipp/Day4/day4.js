@@ -5,46 +5,51 @@ const app = express()
 
 app.set("view engine", "ejs")
 
-//create 1 character object
-var character = {
-  name: 'Kazuha',
-  race: 'Human',
-  profession: 'Wandering Samurai',
-  equipment: {
-    head: {},
-    chest: {},
-    legs: {},
-    arm_p: {},
-    arm_s: {}
-  },
-  inventory: [],
-  abilities: [],
-  stats: {
-    attack: 5,
-    defense: 5,
-    hp_current: 20,
-    hp_max: 20
-  },
-  pickupItem: function (searchName) {
-    for (var item of itemList) {
-      console.log(item.name)
-      if (item.name == searchName) {
-        console.log("Found a match!");
-        this.inventory.push(item)
-        break;
+class Character {
+  constructor(name, race, profession){
+    this.id = characterList.length + 1000
+    this.name = name
+    this.race = race
+    this.profession = profession
+    this.equipment = {
+      head: {},
+      chest: {},
+      legs: {},
+      arm_p: {},
+      arm_s: {}
+    }
+    this.inventory = []
+    this.abilities = []
+    this.stats = {
+      attack: 5,
+      defense: 5,
+      hp_current: 20,
+      hp_max: 20
+    }
+    this.pickupItem = function (searchName) {
+      for (var item of itemList) {
+        console.log(item.name)
+        if (item.name == searchName) {
+          console.log("Found a match!");
+          this.inventory.push(item)
+          break;
+        }
       }
     }
-  },
-  unequipItem: function (slot) {
-    for (var slotName in this.equipment) {
-      if (slotName == slot) {
-        console.log("Found Slot. Removing Item...");
-        this.equipment.slotName = {}
-        break;
+    this.unequipItem = function (slot) {
+      for (var slotName in this.equipment) {
+        if (slotName == slot) {
+          console.log("Found Slot. Removing Item...");
+          this.equipment.slotName = {}
+          break;
+        }
       }
     }
   }
 }
+
+var characterList = []
+characterList.push(new Character('Kazuha', 'Human', 'Wandering Samurai'))
 
 var itemList = [
   {
@@ -62,12 +67,24 @@ var itemList = [
     }
   }
 ]
-
-
+characterList[0].pickupItem('Sword')
+characterList[0].unequipItem('arm_p')
 //Create a GET endpoint
-app.get('/', (req, res) => {
-  character.pickupItem('Sword')
-  character.unequipItem('arm_p')
-  res.render('profile', {sendData: character})
+app.get('/profile/:characterid', (req, res) => {
+  var foundProfile = characterList.find(character => character.id == req.params.characterid)
+  if(foundProfile) {
+    res.render('profile', {sendData: foundProfile})
+  }else {
+    res.redirect('/new')
+  }
 })
+
+app.get('/new', (req, res) => {
+  characterList.push(new Character('Kaeya', 'Human', 'Calvary Captain'))
+  res.redirect('/profile/' + characterList[characterList.length - 1].id)
+})
+
+
+
+
 app.listen(3000)
