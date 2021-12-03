@@ -17,16 +17,16 @@
   if (characterData) {
     //Fid the existing "content" box and make it a js object
     var contentBox = document.getElementById("content");
-    //Create a new box just for profile stats
-    let profileBox = document.createElement('div')
-    profileBox.id = "profileBox"
-    //Put it in the contentBox
-    contentBox.append(profileBox)
     //Create a h2, put the cahracter name in, put into the contentBox
     let nameHeader = document.createElement('h2')
     nameHeader.innerText = characterData.name;
     let nameText = document.createTextNode(characterData.name)
     contentBox.append(nameHeader)
+    //Create a new box just for profile stats
+    let profileBox = document.createElement('div')
+    profileBox.id = "profileBox"
+    //Put it in the contentBox
+    contentBox.append(profileBox)
 
     //Put all stats into one header in the ProfileBox
     let statsHeader = document.createElement('h3');

@@ -17,7 +17,7 @@ class Character {
     this.equipment = {
       head: {},
       chest: {},
-      legs:{},
+      legs: {},
       arm_p: {},
       arm_s: {},
     }
@@ -78,11 +78,22 @@ app.get('/profile/:characterid', (req, res) => {
   console.log(req.params.characterid);
 
   var foundProfile = characterList.find(character => character.id == req.params.characterid)
-  console.log(foundProfile)
-  // Render a template called 'profile' from the 'views' folder and send it to a variable called "sendData"
-  res.render('profile', { sendData: characterList[0] })
+  if (foundProfile) {
+    // Render a template called 'profile' from the 'views' folder and send it to a variable called "sendData"
+    res.render('profile', {
+      sendData: characterList[0]
+    })
+  } else {
+    res.redirect('/new');
+  }
   //each of the characters stats
   // One per paragraph
+})
+
+//This endpoint creates a new character
+app.get('/new', (req, res) => {
+  characterList.push(new Character('Sigma', 'Virgin', 'Farmer'))
+  res.redirect('/profile/' + characterList[characterList.length - 1].id)
 })
 // Start an http listen server
 app.listen(3000)
