@@ -52,7 +52,7 @@ class Character {
   }
 }
 var characterList = []
-characterList.push(new Character('Chad', 'God', 'Assassin'))
+characterList.push(new Character('Chad', 'God Slayer', 'Assassin'))
 
 var item_list = [{
     name: 'Divine Dagger',
@@ -76,6 +76,9 @@ characterList[0].unequipItem('arm_p');
 // Create a GET endpoint
 app.get('/profile/:characterid', (req, res) => {
   console.log(req.params.characterid);
+
+  var foundProfile = characterList.find(character => character.id == req.params.characterid)
+  console.log(foundProfile)
   // Render a template called 'profile' from the 'views' folder and send it to a variable called "sendData"
   res.render('profile', { sendData: characterList[0] })
   //each of the characters stats
