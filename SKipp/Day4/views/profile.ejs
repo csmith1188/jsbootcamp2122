@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Character Profile</title>
+  </head>
+  <body>
+    <h1>Hewwo UwU</h1>
+    <div id='content'>
+
+    </div>
+  </body>
+  <script>
+    var characterData = <%- JSON.stringify(sendData) %>;
+    if (characterData) {
+      var contentBox = document.getElementById('content')
+      let nameHeader = document.createElement('h2')
+      let nameText = document.createTextNode(characterData.name)
+      nameHeader.append(nameText)
+      contentBox.append(nameHeader)
+
+      var statsHeader = document.createElement('h3')
+      statsHeader.innerHTML = 'Stats'
+      let statsBox = document.createElement('div')
+      statsBox.innerHTMl = characterData.stats
+      contentBox.append(statsHeader)
+      contentBox.append(statsBox)
+
+      for (var slot of Object.keys(characterData.equipment)) {
+        let slotHeader = document.createElement('h3')
+        slotHeader.innerHTML = 'Equipment'
+        let slotBox = document.createElement('div')
+        slotBox.innerHTMl = characterData.equipment[slot]
+        contentBox.append(slotHeader)
+        contentBox.append(slotBox)
+      }
+    }
+  </script>
+</html>
