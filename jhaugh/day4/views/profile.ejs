@@ -15,26 +15,39 @@
 <script type="text/javascript">
   var characterData = <%- JSON.stringify(sendData) %>;
   if (characterData) {
+    //Fid the existing "content" box and make it a js object
     var contentBox = document.getElementById("content");
+    //Create a new box just for profile stats
+    let profileBox = document.createElement('div')
+    //Put it in the contentBox
+    contentBox.append(profileBox)
+    //Create a h2, put the cahracter name in, put into the contentBox
     let nameHeader = document.createElement('h2')
+    nameHeader.innerText = characterData.name;
     let nameText = document.createTextNode(characterData.name)
-    nameHeader.append(nameText)
     contentBox.append(nameHeader)
+    nameHeader.append(nameText)
 
+    //Put all stats into one header in the ProfileBox
     let statsHeader = document.createElement('h3');
-    statsHeader.innerHTML = 'Stats'
+    statsHeader.innerText = 'Stats'
     let statsBox = document.createElement('div');
-    statsBox.innerHTML = JSON.stringify(characterData.stats);
-    content.append(statsHeader)
-    content.append(statsBox)
+    statsBox.innerText = JSON.stringify(characterData.stats);
+    profileBox.append(statsHeader)
+    profileBox.append(statsBox)
 
+    //Object.keys() returns a list of all property NAMES in a given Object
+    //for..of wiil loop through each key NAME/key
     for (var slot of Object.keys(characterData.equipment) ) {
+      //Each equipment slot will have its own header/box
       let slotHeader = document.createElement('h3');
       slotHeader.innerHTML = slot;
+      //Insert data of the slot into a box
       let slotBox = document.createElement('div');
       slotBox.innerHTML = JSON.stringify(characterData.equipment[slot]);
-      content.append(slotHeader)
-      content.append(slotBox)
+      //Add the equipment slot to the profileBox
+      profileBox.append(slotHeader)
+      profileBox.append(slotBox)
     }
 
   }
