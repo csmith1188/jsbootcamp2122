@@ -9,26 +9,26 @@ app.set("view engine", "ejs");
 
 
 class Character {
-    name = 'Chad',
-    race = 'God',
-    profession = 'Assassin',
-    equipment = {
+    this.name = 'Chad'
+    this.race = 'God'
+    this.profession = 'Assassin'
+    this.equipment = {
       head: '',
       chest: '',
       legs: '',
       arm_p: '',
       arm_s: '',
-    },
-    inventory = [],
-    abilities = [],
-    stats = {
+    }
+    this.inventory = []
+    this.abilities = []
+    this.stats = {
       attack: 999999999999,
       defense: 999999999999,
       hp_current: 999999999999,
       hp_max: 999999999999
     }
     //This method searches for an item in the item list with this Name and aadds it to this characters inventory
-    pickupItem: function(searchName) {
+    this.pickupItem: function(searchName) {
       for (var item of item_list) {
         if (item.name == searchName) {
           console.log("Found a match!");
@@ -38,7 +38,7 @@ class Character {
       }
     }
     // This method searches for a given slot and overwrites it with an empty object
-    unequipItem: function(slot) {
+    this.unequipItem: function(slot) {
       for (var slotName in this.equipment) {
         console.log(slotName);
         if (slotName == slot) {
