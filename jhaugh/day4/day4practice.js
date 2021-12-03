@@ -9,10 +9,10 @@ app.set("view engine", "ejs");
 
 
 class Character {
-  constructer() {
-    this.name = 'Chad'
-    this.race = 'God'
-    this.profession = 'Assassin'
+  constructor(name, race, proffesion) {
+    this.name = name
+    this.race = race
+    this.profession = profession
     this.equipment = {
       head: {},
       chest: {},
