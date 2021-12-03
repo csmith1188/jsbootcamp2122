@@ -1,0 +1,31 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Character Profile</title>
+</head>
+<body>
+    <h1>yo</h1>
+    <div id="content">
+
+    </div>
+</body>
+<script type="text/javascript">
+    var characterData = <%- JSON.stringify(sendData) %>;
+    if (characterData) {
+        var contentBox = document.getElementById('content')
+        let nameHeader = document.createElement('h2');
+        let nameText = document.createTextNode(characterData.name);
+        nameHeader.append(nameText);
+        contentBox.append(nameHeader);
+        content.append(statshead )
+        for (const stat of Object.keys(characterData.equipment)) {
+            let slotHeader = document.createElement('h3');
+            slotHeader.innerHTML = slot;
+            let slotBox = document.createElement('div');
+            slotBox.innerHTML = JSON.stringify(characterData.equipment[slot])
+        }
+    }
+</script>
+</html>
