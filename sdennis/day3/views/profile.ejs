@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Character Profile </title>
+  </head>
+  <body>
+    <h1> Hello Gz</h1>
+      <div id="content">
+
+      </div>
+  </body>
+  <script type="text/javascript">
+    var characterData =<%- JSON.stringify(sendData) %>;
+    if (characterData) {
+      var contentBox = document.getElementById('content');
+      let nameHeader = document.createElement('h2');
+      let nameText = document.createTextNode(characterData.name);
+      content.append(statsHeader);
+      content.append(statsBox);
+
+      var statsHeader = document.createElement('h3');
+      statsHeader.innerHTML = 'Stats';
+      let statsBox = document.createElement('div');
+      statsBox.innerHTML = JSON.stringify(character.stats);
+
+      for (var stat of Object.keys(characterData.stats)) {
+        let slotHeader = document.createElement('h3');
+        slotHeader.innerHTML = slot;
+        let slotBox = document.createElement('div');
+        slotBox.innerHTML = JSON.stringify(character.equipment[slot]);
+        content.append(slotHeader);
+        content.append(slotBox
+        );
+
+      }
+    }
+  </script>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Character Profile </title>
+  </head>
+  <body>
+    <h1> Hello Gz</h1>
+      <div id="content">
+
+      </div>
+  </body>
+  <script type="text/javascript">
+    var characterData =<%- JSON.stringify(sendData) %>;
+    if (characterData) {
+      //find the existing "content" box and make is a js object
+      var contentBox = document.getElementById('content');
+
+      //create a new box just for profile stats
+      let profileBox = document.createElement('div')
+      profileBox.id = "profileBox"
+      //put it in the contentBox
+      contentBox.append(profileBox)
+
+// create an h2, put the character name in , put into contentBox
+      let nameHeader = document.createElement('h2');
+      nameHeader.innerText = characterData.name;
+      content.append(nameHeader);
+
+      var statsHeader = document.createElement('h3');
+      statsHeader.innerText = 'Stats';
+      let statsBox = document.createElement('div');
+      statsBox.innerHTML = JSON.stringify(characterData.stats);
+      profileBox.append(statsHeader);
+      profileBox.append(statsBox);
+// object.keys() returns a list of all properties NAMES  in a given
+// for.. of will loop through each property NAME/key
+      for (var slot of Object.keys(characterData.equipment)) {
+        //each equipment slot will haveits own header/box
+        let slotHeader = document.createElement('h3');
+        slotHeader.innerHTML = slot;
+        // insert data of the slot into a box
+        let slotBox = document.createElement('div');
+        slotBox.innerHTML = JSON.stringify(characterData.equipment[slot]);
+        // add the equipment slot to the profile
+        profileBox.append(slotHeader);
+        profileBox.append(slotBox);
+
+      }
+    }
+  </script>
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+  <script>
+  $( function() {
+    $( "#profileBox" ).accordion();
+  } );
+  </script>
+</head>
+<body>
+</html>
