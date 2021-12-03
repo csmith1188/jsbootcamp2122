@@ -19,6 +19,7 @@
     var contentBox = document.getElementById("content");
     //Create a new box just for profile stats
     let profileBox = document.createElement('div')
+    profileBox.id = "profileBox"
     //Put it in the contentBox
     contentBox.append(profileBox)
     //Create a h2, put the cahracter name in, put into the contentBox
@@ -51,6 +52,15 @@
     }
 
   }
+</script>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+  <script>
+  $( function() {
+    $( "#profileBox" ).accordion({
+      collapsible: true
+    });
+  } );
 </script>
 
 </html>
