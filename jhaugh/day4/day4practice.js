@@ -10,6 +10,7 @@ app.set("view engine", "ejs");
 
 class Character {
   constructor(name, race, profession) {
+    this.id = characterList.length + 1000;
     this.name = name
     this.race = race
     this.profession = profession
@@ -50,8 +51,8 @@ class Character {
     }
   }
 }
-
-var character = new Character('Chad', 'God', 'Assassin')
+var characterList = []
+characterList.push(new Character('Chad', 'God', 'Assassin'))
 
 var item_list = [{
     name: 'Divine Dagger',
@@ -69,13 +70,14 @@ var item_list = [{
   },
 ];
 
+characterList[0].pickupItem('Divine Dagger');
+characterList[0].unequipItem('arm_p');
 
 // Create a GET endpoint
-app.get('/', (req, res) => {
-  character.pickupItem('Divine Dagger');
-  character.unequipItem('arm_p');
+app.get('/profile/:characterid', (req, res) => {
+  console.log(req.params.characterid);
   // Render a template called 'profile' from the 'views' folder and send it to a variable called "sendData"
-  res.render('profile', { sendData: character })
+  res.render('profile', { sendData: characterList[0] })
   //each of the characters stats
   // One per paragraph
 })
