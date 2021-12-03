@@ -1,11 +1,12 @@
-//import expessjs module
+//Import expressJS module
 const express = require('express');
 
-//create express application object
+// Create an epxress application object
 const app = express()
 
+app.set("view engine", "ejs");
 
-//create 1 character object
+// Create one character object
 var character = {
   name: 'Aeonium',
   race: 'Fairy',
@@ -25,8 +26,10 @@ var character = {
     hp_current: 43,
     hp_max: 43
   },
-  //this method searches for item in item list with this name and adds it to inventory
+  //This method searches for an item in the itme list with this name
+  //And adds it to this character's inventory
   pickupItem: function(searchName) {
+    console.log(this);
     for (var item of item_list) {
       console.log(item.name);
       if (item.name == searchName) {
@@ -36,48 +39,44 @@ var character = {
       }
     }
   },
-  //searches for given slot and overwrites it with empty object
+  //This method searches for a given slot and overwrites
+  //it with an empty object
   unequipItem: function(slot) {
     for (var slotName in this.equipment) {
       console.log(slotName);
       if (slotName == slot) {
-        console.log("found item slot. Removing.");
+        console.log("Found item slot. Removing.");
         this.equipment.slotName = {};
         break;
       }
     }
   }
-};
+}
 
-//holds all possible items
-var item_list = [{
+// This holds all possible items
+var item_list = [
+  {
     name: 'Gun',
     slot: 'arm_p',
     bonuses: {
-      attack: 17
+      attack: 5
     }
   },
   {
     name: 'Shield',
     slot: 'arm_s',
     bonuses: {
-      defense: 3
+      defense: 5
     }
   }
 ];
 
-
-//create GET endpoint
+// Create a GET endpoint
 app.get('/', (req, res) => {
-  character.pickupItem("Gun");
-  character.unequipItem('arm_p')
-  res.render('profile', {
-    sendData: character
-  })
-  //each of the character's stats
-  //one per paragraph
-
+  character.pickupItem('Gun');
+  character.unequipItem('arm_p');
+  res.render('profile', { sendData: character })
 });
 
-//start http listen server
-app.listen(3000)
+//Start an http listen server
+app.listen(3000);
