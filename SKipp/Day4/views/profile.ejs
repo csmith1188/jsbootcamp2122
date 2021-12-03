@@ -14,6 +14,8 @@
     var characterData = <%- JSON.stringify(sendData) %>;
     if (characterData) {
       var contentBox = document.getElementById('content')
+      let profileBox = document.createElement('div')
+      contentBox.append(profileBox)
       let nameHeader = document.createElement('h2')
       let nameText = document.createTextNode(characterData.name)
       nameHeader.append(nameText)
