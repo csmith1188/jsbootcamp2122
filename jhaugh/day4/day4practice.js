@@ -9,7 +9,7 @@ app.set("view engine", "ejs");
 
 
 class Character {
-  constructor(name, race, proffesion) {
+  constructor(name, race, profession) {
     this.name = name
     this.race = race
     this.profession = profession
@@ -51,50 +51,7 @@ class Character {
   }
 }
 
-
-
-// Create one character object
-var character = {
-  name: 'Chad',
-  race: 'God',
-  profession: 'Assassin',
-  equipment: {
-    head: {},
-    chest: {},
-    legs: {},
-    arm_p: {},
-    arm_s: {},
-  },
-  inventory: [],
-  abilities: [],
-  //This method searches for an item in the item list with this Name and aadds it to this characters inventory
-  pickupItem: function(searchName) {
-    for (var item of item_list) {
-      if (item.name == searchName) {
-        console.log("Found a match!");
-        this.inventory.push(item);
-        break;
-      }
-    }
-  },
-  stats: {
-    attack: 999999999999,
-    defense: 999999999999,
-    hp_current: 999999999999,
-    hp_max: 999999999999
-  },
-  // This method searches for a given slot and overwrites it with an empty object
-  unequipItem: function(slot) {
-    for (var slotName in this.equipment) {
-      console.log(slotName);
-      if (slotName == slot) {
-        console.log("Found item slot. Removing");
-        this.equipment.slotName = {};
-      }
-    }
-  }
-}
-
+var character = new Character('Chad', 'God', 'Assassin')
 
 var item_list = [{
     name: 'Divine Dagger',
