@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
 <head>
   <meta charset="utf-8">
   <title>Character Profile</title>
@@ -27,7 +27,6 @@
     nameHeader.innerText = characterData.name;
     let nameText = document.createTextNode(characterData.name)
     contentBox.append(nameHeader)
-    nameHeader.append(nameText)
 
     //Put all stats into one header in the ProfileBox
     let statsHeader = document.createElement('h3');
