@@ -89,7 +89,6 @@ app.get('/profile/:characterid', (req, res) => {
 if (foundProfile){
 
   //render a template called 'profile' from the 'views' folder
-  //
    res.render('profile' , {
       sendData: foundProfile
     })
@@ -100,5 +99,5 @@ if (foundProfile){
     });
   }
 });
-//STart an http listen server
+//Start an http listen server
 app.listen(3000)
