@@ -29,6 +29,7 @@ var protag = {
     for (var item of item_list) {
       console.log(item.name);
       if (item.name == searchName) {
+        
         console.log('found a match!');
         this.inventory.push(item);
         break;
