@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>🥺</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+</head>
+
+<body>
+  <h1>H- Hewwo,, 🥺 </h1>
+  <div id="content">
+  </div>
+</body>
+<script type="text/javascript">
+  var characterData = <%- JSON.stringify(sendData) %>;
+  if (characterData) {
+    //find the existing "content" box and make it a js object
+    var contentBox = document.getElementById('content');
+
+    //create a new box just for profile stats
+    let profileBox = document.createElement('div')
+    profileBox.id = "profileBox"
+    //put profile box in
+    contentBox.append(profileBox)
+
+    //crate an h2 with character name put in to contentbox
+    let nameHeader = document.createElement('h2');
+    nameHeader.innerText = characterData.name;
+    contentBox.append(nameHeader);
+
+    //put all stats into the one header in the profileBox
+    let statsHeader = document.createElement('h3');
+    statsHeader.innerHTML = 'Stats';
+    let statsBox = document.createElement('div');
+    statsBox.innerText = JSON.stringify(characterData.stats);
+    profileBox.append(statsHeader);
+    profileBox.append(statsBox);
+
+    //object.keys() returns a list of all property names in a given Object
+    //for..of will loop through each key property(key) name
+    for (var slot of Object.keys(characterData.equipment)) {
+      //each equipment slot will have its own header/box
+      var slotHeader = document.createElement('h3')
+      slotHeader.innerHTML = slot;
+      //insert data of the slot into the box
+      let slotBox = document.createElement('div')
+      slotBox.innerHTML = JSON.stringify(characterData.equipment[slot]);
+      //add the equipment slot to the profileBox
+      profileBox.append(slotHeader)
+      profileBox.append(slotBox)
+    }
+
+  }
+</script>
+
+<!-- use accordian widget from hqyeryui-->
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+<script>
+$( function() {
+  $( "#profileBox" ).accordion({
+    collapsible: true
+  });
+} );
+</script>
+</html>
